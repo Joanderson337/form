@@ -1,11 +1,13 @@
+import { Form } from '@/pages/Form/form';
+import { Home } from '@/pages/Home/home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Home } from '@/pages/Home';
 
 export function Router() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/form" element={<Form />} />
       </Routes>
     </BrowserRouter>
   );
