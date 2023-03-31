@@ -10,11 +10,13 @@ export default createGlobalStyle`
   list-style: none;
   text-decoration: none;
   font-size: 1.6rem;
+  font-family: 'Inter', sans-serif;
 }
 
 body, input, button, textarea{
   outline: none;
 }
+
 
 img{
   max-width: 100%;
