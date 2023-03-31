@@ -299,7 +299,7 @@ export function CustomForm() {
                     Informe a cor primária da sua identidade visual em formato de código hexadecimal. Ex: #1414B2
                     <br />
                     <br />
-                    Caso não saiba a cor hexadecimal: <a href="https://g.co/kgs/kuJPV1">clique aqui</a>
+                    Caso não saiba a cor hexadecimal: <a href="https://g.co/kgs/kuJPV1" target='_blank' rel="noreferrer">clique aqui</a>
                   </label>
                   <CustomInput
                     placeholder=' Ex: #1414B2'
@@ -312,6 +312,9 @@ export function CustomForm() {
                 <ContentInput>
                   <label htmlFor="identidade_cor_secundaria">
                     Informe a cor secundária da sua identidade visual em formato de código hexadecimal. Ex: #1414B2
+                    <br />
+                    <br />
+                    Caso não saiba a cor hexadecimal: <a href="https://g.co/kgs/kuJPV1" target='_blank' rel="noreferrer">clique aqui</a>
                   </label>
 
                   <CustomInput
