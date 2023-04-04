@@ -112,4 +112,21 @@ export const Button = styled.button`
     height: 30px;
     font-size: 14px;
   }
+
+  &[disabled] {
+    background-color: ${({ theme }) => theme.GRAY_100};
+    color: ${({ theme }) => theme.GRAY_300};
+    cursor: not-allowed;
+  }
 `;
+
+export const ContainerReCAPTCHA = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+
+    @media (max-width: 700px) {
+    justify-content: center;
+  }
+`;
+

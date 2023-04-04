@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { Button, ConatinerStep, ContentBtn, ContentInput, ContentTitle, ContextoStep, Form } from './styled';
+import { Button, ConatinerStep, ContainerReCAPTCHA, ContentBtn, ContentInput, ContentTitle, ContextoStep, Form } from './styled';
 import { CustomInput } from '../CustomInput/customInput';
 import { useNavigate } from 'react-router-dom';
 import { validateCNPJ, validateCPF } from 'validations-br';
 import { toast } from 'react-toastify';
+import { CustomInputMask } from '../CustomInputMask/customInputMask';
 
 type FormData = {
   nome_marca: string
@@ -81,7 +83,13 @@ const schema = yup.object().shape({
 export function CustomForm() {
 
   const [step, setStep] = useState(1);
+  const [huma, setHuma] = useState(true);
   const navigate = useNavigate();
+
+  const onChange = ( ) => {
+    setHuma(false);
+  };
+
 
   const handleHome = () => {
     navigate('/');
@@ -174,8 +182,8 @@ export function CustomForm() {
 
                 <ContentInput>
                   <label htmlFor="cnpj_empresa">Qual o CNPJ da empresa?</label>
-                  <CustomInput
-                    type={'number'}
+                  <CustomInputMask
+                    mask="99.999.999/9999-99"
                     {...methods.register('cnpj_empresa')}
                     hasError={!!methods.formState.errors.cnpj_empresa}
                   />
@@ -213,9 +221,9 @@ export function CustomForm() {
 
                 <ContentInput>
                   <label htmlFor="representante_cpf"> Qual o CPF do representante legal?</label>
-                  <CustomInput
+                  <CustomInputMask
+                    mask="999.999.999-99"
                     {...methods.register('representante_cpf')}
-                    type={'number'}
                     hasError={!!methods.formState.errors.representante_cpf}
                   />
                   {methods.formState.errors.representante_cpf && <p>{methods.formState.errors.representante_cpf.message}</p>}
@@ -415,16 +423,21 @@ export function CustomForm() {
 
 
                 <ContentBtn>
-                  <Button type="button" onClick={() => setStep(4)}>
+                  <Button  type="button" onClick={() => setStep(4)}>
                     Voltar
                   </Button>
-                  <Button type="submit" onClick={() => methods.trigger(['email_gestao'])}>
+                  <Button disabled={huma} type="submit" onClick={() => methods.trigger(['email_gestao'])}>
                     Enviar
                   </Button>
                 </ContentBtn>
-
               </ConatinerStep>
             </ContextoStep>
+            <ContainerReCAPTCHA>
+              <ReCAPTCHA
+                sitekey="6Lf421YlAAAAAFwu6slG3RpmIIXvl-R3GY9xCwU8"
+                onChange={onChange}
+              />
+            </ContainerReCAPTCHA>
           </>
         )}
       </Form>
